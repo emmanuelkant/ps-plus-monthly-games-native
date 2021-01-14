@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "ps-plus-monthly-games",
+    "name": "PS Plus Monthly Games",
     "slug": "ps-plus-monthly-games",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -20,6 +20,9 @@
       "supportsTablet": true
     },
     "android": {
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-3165514241000003~6676847238"
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
