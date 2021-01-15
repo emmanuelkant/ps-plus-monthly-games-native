@@ -1,39 +1,23 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import styled from 'styled-components/native';
+import { View, Text } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const HeaderTitle = styled.Text`
-  color: #F9FAFC;
-  font-size: 16px;
-`;
+import styles from './styles';
 
-const Wrapper = styled.View`
-  padding: 24px;
-  background-color: #0172CE;
-  border-bottom-width: 1px;
-  border-color: #0172CE;
-  padding-top: 44px;
-
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export default function Header({ title, showCancel = true, hasNavigation = false }) {
+export default function Header({ title, hasNavigation = false }) {
   const navigation = useNavigation();
 
   return (
-    <Wrapper>
+    <View style={styles.wrapper}>
       {hasNavigation && (
         <BorderlessButton onPress={navigation.goBack}>
           <Feather name="arrow-left" size={24} color="#F9FAFC" />
         </BorderlessButton>
       )}
-      <HeaderTitle>{title}</HeaderTitle>
+      <Text style={styles.headerTitle}>{title}</Text>
       <View />
-    </Wrapper>
+    </View>
   )
 }

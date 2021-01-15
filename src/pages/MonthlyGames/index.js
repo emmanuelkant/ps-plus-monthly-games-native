@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components/native';
-import { Text, ActivityIndicator } from 'react-native';
+import { Text, ActivityIndicator, View, ScrollView, Image } from 'react-native';
+import styles from './styles';
 
 import { MonthGames } from './monthlyGames.query';
 import { useFetch } from '../../service/fetch';
-
-
-const Wrapper = styled.View`
-  background-color: #eee;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-`;
 
 export default function MonthlyGames() {
   const [monthGames, setMonthGames] = useState([]);
@@ -23,21 +14,40 @@ export default function MonthlyGames() {
       setMonthGames(data.monthGames);
     }
 
+    if (!monthGames[0]) {
       getData();
+    }
   });
 
-  if (monthGames.length === 0) {
+  if (!monthGames[0]) {
     return (
-      <Wrapper>
-        <ActivityIndicator size={80} color="#0172CE" />
-        <Text>Searching for new games...</Text>
-      </Wrapper>
+      <View style={[styles.wrapper, styles.wrapperLoading]}>
+        <ActivityIndicator size={60} color="#0172CE" />
+        <Text style={styles.text}>Searching for the new games...</Text>
+      </View>
     );
   }
-
+  console.log(monthGames[0])
   return (
-    <Wrapper>
-      <Text>Here we go</Text>
-    </Wrapper>
+    <ScrollView style={[styles.wrapper, styles.wrapperContent]}>
+      <Text style={styles.text}>{monthGames[0].title}</Text>
+      {monthGames[0].games.map(game => (
+        <View key={game.id}>
+          
+          <View>
+            <Image
+              style={styles.image}
+              source={{
+                uri: game.image[0].url,
+              }}
+            ></Image>
+            <Text style={styles.text}>{game.name}</Text>
+            <Text style={styles.text}>{game.description}</Text>
+            <Text style={styles.text}>{game.platform}</Text>
+          </View>
+        </View>  
+      ))}
+      <Text style={styles.text}>Here we go</Text>
+    </ScrollView>
   )
 }
