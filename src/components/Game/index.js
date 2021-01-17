@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
-import { View, Text, Image, Pressable } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { Animated, View, Text, Image, Pressable, Easing } from 'react-native';
 
 import styles from './styles';
 
 export default function Game({ image, name, description, platform }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-  const gameStyle = [styles.game, isOpen ? styles.open : styles.close]
+  const [isOpen, setIsOpen] = useState(false);
+  const heightAnim = useRef(new Animated.Value(150)).current;
+
+  const toggleHeight = () => {
+    Animated.timing(heightAnim, {
+      toValue: isOpen ? 150 : 550,
+      duration: 450,
+      useNativeDriver: false,
+      easing: Easing.ease,
+    }).start();
+  };
 
   return (
-    <Pressable style={[...gameStyle]} onPress={() => setIsOpen(!isOpen)}>
+    <AnimatedPressable
+      style={[styles.game, { height: heightAnim }]} 
+      onPress={() => {
+        setIsOpen(!isOpen);
+        toggleHeight();
+      }}
+    >
       <Image
         style={styles.image}
         source={{
@@ -21,6 +37,6 @@ export default function Game({ image, name, description, platform }) {
         <Text style={[styles.text, styles.gamePlatform]}>Platform: {platform}</Text>
         <Text style={[styles.text, styles.gameDescription]}>About the game: {description}</Text>
       </View>
-    </Pressable>
+    </AnimatedPressable>
   )
 }

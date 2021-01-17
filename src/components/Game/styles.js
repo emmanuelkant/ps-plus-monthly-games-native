@@ -3,16 +3,11 @@ import { StyleSheet } from 'react-native';
 export default styles = StyleSheet.create({
   game: {
     width: '95%',
+    flex: 1,
     marginBottom: 30,
     overflow: 'hidden',
     borderRadius: 10,
     backgroundColor: '#2b2a30',
-  },
-  open: {
-    flex: 1,
-  },
-  close: {
-    height: 150,
   },
   image: {
     width: '100%',
