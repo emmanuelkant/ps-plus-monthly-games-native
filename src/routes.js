@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import MonthlyGames from './pages/MonthlyGames';
+import MonthlyGames from './screens/MonthlyGames';
 
 const { Navigator, Screen } = createStackNavigator();
 
