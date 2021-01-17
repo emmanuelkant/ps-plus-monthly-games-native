@@ -11,7 +11,7 @@ export default function Game({ image, name, description, platform }) {
 
   const toggleHeight = () => {
     Animated.timing(heightAnim, {
-      toValue: isOpen ? 150 : 550,
+      toValue: isOpen ? 180 : 550,
       duration: 450,
       useNativeDriver: false,
       easing: Easing.ease,
