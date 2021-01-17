@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Text, ActivityIndicator, View, ScrollView, Image } from 'react-native';
 import styles from './styles';
 
+import Game from '../../components/Game';
+
 import { MonthGames } from './monthlyGames.query';
 import { useFetch } from '../../service/fetch';
 
@@ -27,27 +29,15 @@ export default function MonthlyGames() {
       </View>
     );
   }
-  console.log(monthGames[0])
+
   return (
-    <ScrollView style={[styles.wrapper, styles.wrapperContent]}>
-      <Text style={styles.text}>{monthGames[0].title}</Text>
+    <ScrollView style={[styles.wrapper]}>
+      <Text style={styles.title}>{monthGames[0].title}</Text>
+      <View style={styles.wrapperGames}>
       {monthGames[0].games.map(game => (
-        <View key={game.id}>
-          
-          <View>
-            <Image
-              style={styles.image}
-              source={{
-                uri: game.image[0].url,
-              }}
-            ></Image>
-            <Text style={styles.text}>{game.name}</Text>
-            <Text style={styles.text}>{game.description}</Text>
-            <Text style={styles.text}>{game.platform}</Text>
-          </View>
-        </View>  
+        <Game key={game.id} {...game} />
       ))}
-      <Text style={styles.text}>Here we go</Text>
+      </View>
     </ScrollView>
   )
 }

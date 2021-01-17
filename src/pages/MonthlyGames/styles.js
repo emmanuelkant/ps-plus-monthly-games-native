@@ -9,14 +9,17 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  wrapperContent: {
-    
+  wrapperGames: {
+    alignItems: 'center',
   },
   text: {
     color: '#c8cdd3',
   },
-  image: {
-    width: '100%',
-    height: 150,
-  }
+  title: {
+    color: '#c8cdd3',
+    fontSize: 24,
+    textAlign: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+  },
 });
