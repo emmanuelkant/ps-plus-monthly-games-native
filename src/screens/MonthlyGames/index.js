@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import {
+  AdMobBanner,
+} from 'expo-ads-admob';
 import { Text, ActivityIndicator, View, ScrollView, Image } from 'react-native';
 import styles from './styles';
 
@@ -31,13 +34,21 @@ export default function MonthlyGames() {
   }
 
   return (
-    <ScrollView style={[styles.wrapper]}>
-      <Text style={styles.title}>{monthGames[0].title}</Text>
-      <View style={styles.wrapperGames}>
-      {monthGames[0].games.map(game => (
-        <Game key={game.id} {...game} />
-      ))}
-      </View>
-    </ScrollView>
+    <View style={styles.wrapper}>
+      <ScrollView>
+        <Text style={styles.title}>{monthGames[0].title}</Text>
+        <View style={styles.wrapperGames}>
+        {monthGames[0].games.map(game => (
+          <Game key={game.id} {...game} />
+        ))}
+        </View>
+      </ScrollView>
+      <AdMobBanner
+        style={{ position: 'absolute', bottom: 0, left: 0 }}
+        bannerSize="smartBannerLandscape"
+        adUnitID="ca-app-pub-3165514241000003/6889919789"
+        servePersonalizedAds
+        onDidFailToReceiveAdWithError={(e) => console.error(e)} />
+    </View>
   )
 }

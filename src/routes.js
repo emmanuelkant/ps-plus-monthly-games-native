@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import MonthlyGames from './screens/MonthlyGames';
+import About from './screens/About';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -19,6 +20,14 @@ export default function Routes() {
           options={{
             headerShown: true,
             header: () => <Header title="Monthly Games" />,
+          }}
+        />
+        <Screen 
+          name="About"
+          component={About}
+          options={{
+            headerShown: true,
+            header: () => <Header title="About" hasNavigation />,
           }}
         />
       </Navigator>

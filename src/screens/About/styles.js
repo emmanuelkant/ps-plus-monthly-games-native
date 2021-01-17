@@ -2,20 +2,18 @@ import { StyleSheet } from 'react-native';
 
 export default styles = StyleSheet.create({
   wrapper: {
-    position: 'relative',
-    paddingBottom: 40,
     backgroundColor: '#1a191e',
+    alignItems: 'center',
+    justifyContent: 'center',
     flex: 1,
   },
-  wrapperLoading: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  wrapperGames: {
-    alignItems: 'center',
+  wrapperTexts: {
+    width: '95%',
   },
   text: {
     color: '#c8cdd3',
+    textAlign: 'center',
+    marginVertical: 10,
   },
   title: {
     color: '#c8cdd3',
