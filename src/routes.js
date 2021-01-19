@@ -11,18 +11,18 @@ const { Navigator, Screen } = createStackNavigator();
 import Header from '../src/components/Header';
 
 export default function Routes() {
-  return(
+  return (
     <NavigationContainer>
       <Navigator screenOptions={{ headerShown: false, cardStyle: { backgroundColor: '#F2F3F5' } }} >
-        <Screen 
+        <Screen
           name="MonthlyGames"
           component={MonthlyGames}
           options={{
             headerShown: true,
-            header: () => <Header title="Monthly Games" />,
+            header: () => <Header title="Monthly Games" hasInfo />,
           }}
         />
-        <Screen 
+        <Screen
           name="About"
           component={About}
           options={{

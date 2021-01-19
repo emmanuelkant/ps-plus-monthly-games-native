@@ -17,9 +17,13 @@ export default function Header({ title, hasNavigation = false }) {
         </BorderlessButton>
       )}
       <Text style={styles.headerTitle}>{title}</Text>
-      <BorderlessButton onPress={() => navigation.navigate('About')}>
-        <Feather name="info" size={24} color="#F9FAFC" />
-      </BorderlessButton>
+      {hasInfo ? (
+        <BorderlessButton onPress={() => navigation.navigate('About')}>
+          <Feather name="info" size={24} color="#F9FAFC" />
+        </BorderlessButton>
+      ) : (
+          <View />
+        )}
     </View>
   )
 }
