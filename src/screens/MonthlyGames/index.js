@@ -9,22 +9,28 @@ import Game from '../../components/Game';
 
 import { MonthGames } from './monthlyGames.query';
 import { useFetch } from '../../service/fetch';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function MonthlyGames() {
   const [monthGames, setMonthGames] = useState([]);
-  
-  useEffect(() => {
-    async function getData() {
-      const data = await useFetch(MonthGames);
-      setMonthGames(data.monthGames);
-    }
 
+  useEffect(() => {
     if (!monthGames[0]) {
       getData();
     }
   });
 
-  if (!monthGames[0]) {
+  const getData = async () => {
+    const data = await useFetch(MonthGames);
+    setMonthGames(data.monthGames);
+  }
+
+  const retry = () => {
+    setMonthGames({});
+    getData();
+  }
+
+  if (!monthGames.error && !monthGames[0]) {
     return (
       <View style={[styles.wrapper, styles.wrapperLoading]}>
         <ActivityIndicator size={60} color="#0172CE" />
@@ -33,14 +39,27 @@ export default function MonthlyGames() {
     );
   }
 
+  if (monthGames.error) {
+    return (
+      <View style={[styles.wrapper, styles.wrapperError]}>
+        <View style={styles.wrapperErrorText}>
+          <Text style={styles.errorText}>Ops...Something went wrong!</Text>
+        </View>
+        <TouchableOpacity style={styles.tryAgainButton} onPress={retry}>
+          <Text style={styles.tryAgainText}>Try Again</Text>
+        </TouchableOpacity>
+      </View >
+    );
+  }
+
   return (
     <View style={styles.wrapper}>
       <ScrollView>
         <Text style={styles.title}>{monthGames[0].title}</Text>
         <View style={styles.wrapperGames}>
-        {monthGames[0].games.map(game => (
-          <Game key={game.id} {...game} />
-        ))}
+          {monthGames[0].games.map(game => (
+            <Game key={game.id} {...game} />
+          ))}
         </View>
       </ScrollView>
       <AdMobBanner

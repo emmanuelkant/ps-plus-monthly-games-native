@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-export default function Header({ title, hasNavigation = false }) {
+export default function Header({ title, hasNavigation = false, hasInfo }) {
   const navigation = useNavigation();
 
   return (
