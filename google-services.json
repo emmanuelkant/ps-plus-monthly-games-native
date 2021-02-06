@@ -1,0 +1,39 @@
+{
+    "project_info": {
+      "project_number": "839861853560",
+      "project_id": "psplusmonthlygames",
+      "storage_bucket": "psplusmonthlygames.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:839861853560:android:4c58fecf72e9fa8bc1fc8d",
+          "android_client_info": {
+            "package_name": "com.ekantduarte.psplusmonthlygames"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "839861853560-jbc7h7jb8m66peaqss56lsmlpdkc657j.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyDHbcOWUhoV6mnHYwOPRSAOBLzc7dukP9w"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "839861853560-jbc7h7jb8m66peaqss56lsmlpdkc657j.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
