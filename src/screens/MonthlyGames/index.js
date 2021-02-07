@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   AdMobBanner,
 } from 'expo-ads-admob';
-import { Text, ActivityIndicator, View, ScrollView, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Text, ActivityIndicator, View, ScrollView } from 'react-native';
+import * as Notifications from 'expo-notifications';
+
 import styles from './styles';
+import { MonthGames } from './monthlyGames.query';
+import { useFetch } from '../../service/fetch';
+import { registerForPushNotificationsAsync } from '../../service/push-notification';
 
 import Game from '../../components/Game';
 
-import { MonthGames } from './monthlyGames.query';
-import { useFetch } from '../../service/fetch';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
 export default function MonthlyGames() {
+  const notificationListener = useRef();
+  const responseListener = useRef();
   const [monthGames, setMonthGames] = useState([]);
 
   useEffect(() => {
@@ -19,6 +23,18 @@ export default function MonthlyGames() {
       getData();
     }
   });
+
+  useEffect(() => {
+    registerForPushNotificationsAsync();
+
+    notificationListener.current = Notifications.addNotificationReceivedListener(() => {});
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(() => {});
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener);
+      Notifications.removeNotificationSubscription(responseListener);
+    };
+  }, []);
 
   const getData = async () => {
     const data = await useFetch(MonthGames);
