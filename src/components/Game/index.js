@@ -9,6 +9,10 @@ export default function Game({ image, name, description, platform }) {
   const [isOpen, setIsOpen] = useState(false);
   const heightAnim = useRef(new Animated.Value(150)).current;
 
+  const formatPlatform = () => {
+    return platform.replace('_', ' and ');
+  }
+
   const toggleHeight = () => {
     Animated.timing(heightAnim, {
       toValue: isOpen ? 180 : 550,
@@ -34,7 +38,7 @@ export default function Game({ image, name, description, platform }) {
       ></Image>
       <View style={styles.wrapperTexts}>
         <Text style={[styles.text, styles.gameName]}>{name}</Text>
-        <Text style={[styles.text, styles.gamePlatform]}>Platform: {platform}</Text>
+        <Text style={[styles.text, styles.gamePlatform]}>Platform: {formatPlatform()}</Text>
         <Text style={[styles.text, styles.gameDescription]}>About the game: {description}</Text>
       </View>
     </AnimatedPressable>
