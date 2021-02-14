@@ -1,21 +1,18 @@
 import React, { useState, useRef } from 'react';
 import { Animated, View, Text, Image, Pressable, Easing } from 'react-native';
 
+import { formatPlatform, totalHeight } from './helpers';
 import styles from './styles';
 
 export default function Game({ image, name, description, platform }) {
   const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
   const [isOpen, setIsOpen] = useState(false);
-  const heightAnim = useRef(new Animated.Value(150)).current;
-
-  const formatPlatform = () => {
-    return platform.replace('_', ' and ');
-  }
+  const heightAnim = useRef(new Animated.Value(180)).current;
 
   const toggleHeight = () => {
     Animated.timing(heightAnim, {
-      toValue: isOpen ? 180 : 550,
+      toValue: isOpen ? 180 : totalHeight(description),
       duration: 450,
       useNativeDriver: false,
       easing: Easing.ease,
@@ -24,10 +21,10 @@ export default function Game({ image, name, description, platform }) {
 
   return (
     <AnimatedPressable
-      style={[styles.game, { height: heightAnim }]} 
+      style={[styles.game, { height: heightAnim }]}
       onPress={() => {
-        setIsOpen(!isOpen);
         toggleHeight();
+        setIsOpen(!isOpen);
       }}
     >
       <Image
@@ -38,7 +35,7 @@ export default function Game({ image, name, description, platform }) {
       ></Image>
       <View style={styles.wrapperTexts}>
         <Text style={[styles.text, styles.gameName]}>{name}</Text>
-        <Text style={[styles.text, styles.gamePlatform]}>Platform: {formatPlatform()}</Text>
+        <Text style={[styles.text, styles.gamePlatform]}>Platform: {formatPlatform(platform)}</Text>
         <Text style={[styles.text, styles.gameDescription]}>About the game: {description}</Text>
       </View>
     </AnimatedPressable>
