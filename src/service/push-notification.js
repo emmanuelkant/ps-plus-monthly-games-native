@@ -12,8 +12,7 @@ export const registerForPushNotificationsAsync = async () => {
       alert('Failed to get push token for push notification!');
       return;
   }
-  const token = (await Notifications.getExpoPushTokenAsync()).data;
-  console.log(token);
+
   if (Platform.OS === 'android') {
     Notifications.setNotificationChannelAsync('default', {
     name: 'default',
