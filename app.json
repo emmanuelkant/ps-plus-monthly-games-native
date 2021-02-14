@@ -2,7 +2,7 @@
   "expo": {
     "name": "PS Plus Monthly Games",
     "slug": "ps-plus-monthly-games",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "platforms": [
@@ -23,6 +23,8 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 3,
+      "permissions": [],
       "package": "com.ekantduarte.psplusmonthlygames",
       "googleServicesFile": "./google-services.json",
       "config": {
