@@ -18,10 +18,15 @@ export default styles = StyleSheet.create({
     color: '#c8cdd3',
   },
   title: {
-    color: '#c8cdd3',
     fontSize: 24,
     textAlign: 'center',
     marginTop: 20,
+    marginBottom: 20,
+  },
+  details: {
+    fontSize: 18,
+    textAlign: 'left',
+    marginLeft: 20,
     marginBottom: 20,
   },
   wrapperError: {

@@ -71,7 +71,9 @@ export default function MonthlyGames() {
   return (
     <View style={styles.wrapper}>
       <ScrollView>
-        <Text style={styles.title}>{monthGames[0].title}</Text>
+        <Text style={[styles.text, styles.title]}>{monthGames[0].title}</Text>
+        <Text style={[styles.text, styles.details]}>Was announced at: {monthGames[0].announcement}</Text>
+        <Text style={[styles.text, styles.details]}>Will be available from: {monthGames[0].release}</Text>
         <View style={styles.wrapperGames}>
           {monthGames[0].games.map(game => (
             <Game key={game.id} {...game} />
