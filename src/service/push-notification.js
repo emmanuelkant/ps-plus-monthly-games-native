@@ -1,6 +1,9 @@
 import { Platform } from 'react-native';
 import * as Notifications from 'expo-notifications';
 
+import { CreateExpoToken } from './queries/expo-token.query';
+import { useFetch } from './fetch';
+
 export const registerForPushNotificationsAsync = async () => {
   const { status: existingStatus } = await Notifications.getPermissionsAsync();
   let finalStatus = existingStatus;
@@ -12,13 +15,16 @@ export const registerForPushNotificationsAsync = async () => {
       alert('Failed to get push token for push notification!');
       return;
   }
-
+  const token = (await Notifications.getExpoPushTokenAsync()).data;	
+  
+  await useFetch(CreateExpoToken, { input: token });
+  
   if (Platform.OS === 'android') {
     Notifications.setNotificationChannelAsync('default', {
     name: 'default',
     importance: Notifications.AndroidImportance.MAX,
     vibrationPattern: [0, 250, 250, 250],
-    lightColor: '#FF231F7C',
+    lightColor: '#FFFFFF',
     });
   }
 };
